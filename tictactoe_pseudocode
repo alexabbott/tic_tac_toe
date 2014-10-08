@@ -1,0 +1,25 @@
+There are 8 possible win scenarios with 48 winning combinations
+
+There are a maximum of 9 clicks in a single game and a minimum of 5 clicks to declare a winner
+
+1) create an array that includes all winning combinations
+
+2) create 9 functions, 1 for each box
+
+	function #1: click on a box, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", check playerX array to see if it includes winning combo, if it includes a winning combo, display winner declaration
+
+	function #2: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+
+	function #3: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+
+	function #4: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+
+	function #5: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+
+	function #6: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+
+	function #7: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+
+	function #8: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+
+	function #9: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration, if not, display message "Draw"
