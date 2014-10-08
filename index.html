@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body ng-app="toeApp">
+	<header ng-controller="headerCtrl">TIC TAC TOE</header>
+
+	<div id="wrapper" ng-controller="gameCtrl">
+		<div class="box" id="box1" onclick="boxClicked(1)"></div>
+		<div class="box" id="box2" onclick="boxClicked(2)"></div>
+		<div class="box" id="box3" onclick="boxClicked(3)"></div>
+		<div class="box" id="box4" onclick="boxClicked(4)"></div>
+		<div class="box" id="box5" onclick="boxClicked(5)"></div>
+		<div class="box" id="box6" onclick="boxClicked(6)"></div>
+		<div class="box" id="box7" onclick="boxClicked(7)"></div>
+		<div class="box" id="box8" onclick="boxClicked(8)"></div>
+		<div class="box" id="box9" onclick="boxClicked(9)"></div>
+	</div>
+	
+	<script>
+		var filled;
+		var currentMoves;
+		var winningCombos;
+		var turn = 0;
+		var currentBox;
+
+		window.onload=function(){
+
+			filled = [];
+			currentMoves = []];
+			winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+			for(var i = 0; i <= 8; i++){
+				filled[i] = false;
+				currentMoves[i]='';
+			}
+		}
+
+		function boxClicked(boxNumber){
+			currentBox = "box" + boxNumber;
+
+		};
+
+
+
+
+		// document.getElementById("box1").addEventListener("click", function(){
+		// 	document.getElementById("box1").innerHTML = "X";
+		// })
+	</script>
+
+</body>
+</html>
