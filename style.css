@@ -23,7 +23,7 @@ header {
 #wrapper {
 	width: 456px;
 	height: 600px;
-	margin: 160px auto 0px auto;
+	margin: 140px auto 0px auto;
 	border: 0px;
 }
 .box {
@@ -34,4 +34,17 @@ header {
 	text-align: center;
 	font-size: 8em;
 	padding-top: 20px;
+}
+#reset {
+	text-align: center;
+	padding: 20px;
+	width: 200px;
+	border-radius: 10px;
+	margin: -120px auto 30px auto;
+	font-size: 3em;
+	color: #000;
+}
+#reset:hover {
+	color: #fff;
+	background-color: #000;
 }

@@ -11,46 +11,97 @@
 	<header ng-controller="headerCtrl">TIC TAC TOE</header>
 
 	<div id="wrapper" ng-controller="gameCtrl">
-		<div class="box" id="box1" onclick="boxClicked(1)"></div>
-		<div class="box" id="box2" onclick="boxClicked(2)"></div>
-		<div class="box" id="box3" onclick="boxClicked(3)"></div>
-		<div class="box" id="box4" onclick="boxClicked(4)"></div>
-		<div class="box" id="box5" onclick="boxClicked(5)"></div>
-		<div class="box" id="box6" onclick="boxClicked(6)"></div>
-		<div class="box" id="box7" onclick="boxClicked(7)"></div>
-		<div class="box" id="box8" onclick="boxClicked(8)"></div>
-		<div class="box" id="box9" onclick="boxClicked(9)"></div>
+		<div class="box" id="box1" onclick="boxClicked(1)">1</div>
+		<div class="box" id="box2" onclick="boxClicked(2)">2</div>
+		<div class="box" id="box3" onclick="boxClicked(3)">3</div>
+		<div class="box" id="box4" onclick="boxClicked(4)">4</div>
+		<div class="box" id="box5" onclick="boxClicked(5)">5</div>
+		<div class="box" id="box6" onclick="boxClicked(6)">6</div>
+		<div class="box" id="box7" onclick="boxClicked(7)">7</div>
+		<div class="box" id="box8" onclick="boxClicked(8)">8</div>
+		<div class="box" id="box9" onclick="boxClicked(9)">9</div>
 	</div>
+
+	<a href="test.html"><div id="reset">RESET GAME</div></a>
 	
 	<script>
-		var filled;
-		var currentMoves;
-		var winningCombos;
-		var turn = 0;
-		var currentBox;
+	// instantiate empty arrays for playerX and player0
+	var playerX = [];
+	var playerO = [];
+	var winCombos = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 
-		window.onload=function(){
-
-			filled = [];
-			currentMoves = []];
-			winningCombos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-			for(var i = 0; i <= 8; i++){
-				filled[i] = false;
-				currentMoves[i]='';
-			}
+	// run this function on any box that is clicked
+	var boxClicked = function(i) {
+		if (playerX.length == 0 && playerO.length == 0) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerX.push(num);
+			eachBox.innerHTML = "X";
+			playerX.sort();
 		}
+		else if (playerX.length == 1 && playerO.length == 0) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerO.push(num);
+			eachBox.innerHTML = "O";
+			playerO.sort();
+		}
+		else if (playerX.length == 1 && playerX.length == 1) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerX.push(num);
+			eachBox.innerHTML = "X";
+			playerX.sort();
+		}
+		else if (playerX.length == 2 && playerO.length == 1) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerO.push(num);
+			eachBox.innerHTML = "O";
+			playerO.sort();
+		}
+		else if (playerX.length == 2 && playerO.length == 2) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerX.push(num);
+			eachBox.innerHTML = "X";
+			playerX.sort();
+		}
+		else if (playerX.length == 3 && playerO.length == 2) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerO.push(num);
+			eachBox.innerHTML = "O";
+			playerO.sort();
+		}
+		else if (playerX.length == 3 && playerO.length == 3) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerX.push(num);
+			eachBox.innerHTML = "X";
+			playerX.sort();
+		}
+		else if (playerX.length == 4 && playerO.length == 3) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerO.push(num);
+			eachBox.innerHTML = "O";
+			playerO.sort();
+		}
+		else if (playerX.length == 4 && playerO.length == 4) {
+			var eachBox = document.getElementById('box' + i);
+			var num = Number(eachBox.innerHTML);
+			playerX.push(num);
+			eachBox.innerHTML = "X";
+			playerX.sort();
+			alert("It's a draw!");
 
-		function boxClicked(boxNumber){
-			currentBox = "box" + boxNumber;
+		}
+		else {
+			alert("error");
+		}
+	};
 
-		};
-
-
-
-
-		// document.getElementById("box1").addEventListener("click", function(){
-		// 	document.getElementById("box1").innerHTML = "X";
-		// })
 	</script>
 
 </body>
