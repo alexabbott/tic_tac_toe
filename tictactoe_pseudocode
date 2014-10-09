@@ -2,24 +2,38 @@ There are 8 possible win scenarios with 48 winning combinations
 
 There are a maximum of 9 clicks in a single game and a minimum of 5 clicks to declare a winner
 
-1) create an array that includes all winning combinations
+Each box in the tic tac toe board is a div with innerHTML from 1-9
 
-2) create 9 functions, 1 for each box
+1 | 2 | 3
+---------
+4 | 5 | 6
+---------
+7 | 8 | 9
 
-	function #1: click on a box, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", check playerX array to see if it includes winning combo, if it includes a winning combo, display winner declaration
+1) create an empty array and set it equal to playerX
 
-	function #2: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+2) create an empty array and set it equal to playerO
 
-	function #3: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+3) create an array that includes arrays of all 8 winning combinations
 
-	function #4: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+4) create 1 function with 9 if/else statements
 
-	function #5: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+	IF playerX's array has a length of 0 and playerO's array has a length of 0, and if the innerHTML of the clicked box is not "X" or "O", then the click will grab the innerHTML value in the clicked on box and input it into playerX's array. Change the innerHTML for that box to "X". Sort playerX array. IF playerX array contains an array from the winning combinations array, declare playerX as the winner.
 
-	function #6: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+	IF playerX's array has a length of 1 and playerO's array has a length of 0, and if the innerHTML of the clicked box is not "X" or "O", then the click will grab the innerHTML value in the clicked on box and input it into playerO's array. Change the innerHTML for that box to "O". Sort playerO array. IF playerO array contains an array from the winning combinations array, declare playerO as the winner.
 
-	function #7: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration
+	IF playerX's array has a length of 1 and playerO's array has a length of 1, and if the innerHTML of the clicked box is not "X" or "O", then the click will grab the innerHTML value in the clicked on box and input it into playerX's array. Change the innerHTML for that box to "X". Sort playerX array. IF playerX array contains an array from the winning combinations array, declare playerX as the winner.
 
-	function #8: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerO array, replace box's innerHTML with an "O", if it includes a winning combo, display winner declaration
+	IF playerX's array has a length of 2 and playerO's array has a length of 1, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerO's array. Change the innerHTML for that box to "O". Sort playerO array. IF playerO array contains an array from the winning combinations array, declare playerO as the winner.
 
-	function #9: click on a box, if box is already filled, do nothing, if box is not filled, get innerHTML value of box and add it to playerX array, replace box's innerHTML with an "X", if it includes a winning combo, display winner declaration, if not, display message "Draw"
+	IF playerX's array has a length of 2 and playerO's array has a length of 2, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerX's array. Change the innerHTML for that box to "X". Sort playerX array. IF playerX array contains an array from the winning combinations array, declare playerX as the winner.
+
+	IF playerX's array has a length of 3 and playerO's array has a length of 2, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerO's array. Change the innerHTML for that box to "O". Sort playerO array. IF playerO array contains an array from the winning combinations array, declare playerO as the winner.
+
+	IF playerX's array has a length of 3 and playerO's array has a length of 3, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerX's array. Change the innerHTML for that box to "X". Sort playerX array. IF playerX array contains an array from the winning combinations array, declare playerX as the winner.
+
+	IF playerX's array has a length of 4 and playerO's array has a length of 3, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerO's array. Change the innerHTML for that box to "O". Sort playerO array. IF playerO array contains an array from the winning combinations array, declare playerO as the winner.
+
+	IF playerX's array has a length of 4 and playerO's array has a length of 4, and if the innerHTML of the clicked box is not "X" or "O",  then the click will grab the innerHTML value in the clicked on box and input it into playerX's array. Change the innerHTML for that box to "X". Sort playerX array. IF playerX array contains an array from the winning combinations array, declare playerX as the winner.
+
+	IF playerX's array has a length of 5 and playerO's array has a length of 4, then check both players' arrays to see if they contain an array from the winning combinations array. IF neither player array has a winning combination, send an alert saying "Cat's game. No one wins!".
