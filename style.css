@@ -6,6 +6,7 @@ body {
 	margin: 0 auto;
 	font-family: VT323, sans-serif;
 	font-size: 14px;
+	overflow: hidden;
 }
 div {
 	border: 1px solid #000;
@@ -23,7 +24,7 @@ header {
 #wrapper {
 	width: 456px;
 	height: 600px;
-	margin: 140px auto 0px auto;
+	margin: 130px auto 0px auto;
 	border: 0px;
 }
 .box {
