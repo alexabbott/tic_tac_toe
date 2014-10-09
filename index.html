@@ -3,13 +3,14 @@
 <head>
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 	<script src="main.js"></script>
 </head>
 <body ng-app="toeApp">
 	<header ng-controller="headerCtrl">TIC TAC TOE</header>
-
+	<!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
 	<div id="wrapper" ng-controller="gameCtrl">
 		<div class="box" id="box1" onclick="boxClicked(1)">1</div>
 		<div class="box" id="box2" onclick="boxClicked(2)">2</div>
@@ -22,141 +23,96 @@
 		<div class="box" id="box9" onclick="boxClicked(9)">9</div>
 	</div>
 
+	<!-- Reset game with this button -->
 	<a href="index.html"><div id="reset">RESET GAME</div></a>
-	
+
 	<script>
-	// instantiate empty arrays for playerX and player0
+	// instantiate empty arrays for playerX and playerO
 	var playerX = [];
 	var playerO = [];
+
+	// Define winning combos
 	var winCombos = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
 
+	// function that resets each player's array and resets all the boxes to remove "X"'s and "O"'s'
+	// var reset = function () {
+	// 	playerX = [];
+	// 	playerO = [];
+	// 	for (i = 1; i < 10; i++) {
+	// 		document.getElementById('box' + i).innerHTML = i;
+	// 	};
+	// };
+
+	// check to see if the array of playerX's values includes one of the winning combo arrays
+	var checkWinX = function () {
+		for(var i = 0; i < winCombos.length; i++) {
+		    if ( playerX.indexOf(winCombos[i][0]) >= 0 ) {
+		        if ( playerX.indexOf(winCombos[i][1]) >= 0 ) {
+		            if ( playerX.indexOf(winCombos[i][2]) >= 0 ) {
+		            alert("Congrats, X wins!");
+		        return true;
+		            }
+		       }
+		    }
+		}
+	};
+
+	// check to see if the array of playerO's values includes one of the winning combo arrays
+	var checkWinO = function () {
+		for(var i = 0; i < winCombos.length; i++) {
+		    if ( playerO.indexOf(winCombos[i][0]) >= 0 ) {
+		        if ( playerO.indexOf(winCombos[i][1]) >= 0 ) {
+		            if ( playerO.indexOf(winCombos[i][2]) >= 0 ) {
+		            alert("Congrats, O wins!");
+		        return true;
+		            }
+		       }
+		    }
+		}
+	};
 
 	// run this function on any box that is clicked
 	var boxClicked = function(i) {
-		if (playerX.length == 0 && playerO.length == 0) {
+		// if (number of clicks for playerX + number of clicks for playerO) is even, then it's playerX's turn
+		if ((playerX.length + playerO.length) % 2 == 0) {
 			var eachBox = document.getElementById('box' + i);
 			var num = Number(eachBox.innerHTML);
+			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
 			playerX.push(num);
 			eachBox.innerHTML = "X";
+			// change the style of the box to make it unclickable
 			eachBox.style.pointerEvents = "none";
+			// sort array of playerX clicks from lowest to highest
+			playerX.sort();
+			checkWinX();
 		}
-		else if (playerX.length == 1 && playerO.length == 0) {
+		// if (number of clicks for playerX + number of clicks for playerO) is odd, then it's playerO's turn
+		else if ((playerX.length + playerO.length) % 2 == 1) {
 			var eachBox = document.getElementById('box' + i);
 			var num = Number(eachBox.innerHTML);
+			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
 			playerO.push(num);
 			eachBox.innerHTML = "O";
+			// change the style of the box to make it unclickable
 			eachBox.style.pointerEvents = "none";
+			// sort array of playerO clicks from lowest to highest
 			playerO.sort();
+			checkWinO();
 		}
-		else if (playerX.length == 1 && playerX.length == 1) {
+		// if (number of clicks for playerX + number of clicks for playerO) is 8, then it's playerX's last turn
+		else if ((playerX.length + playerO.length) == 8) {
 			var eachBox = document.getElementById('box' + i);
 			var num = Number(eachBox.innerHTML);
+			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
 			playerX.push(num);
 			eachBox.innerHTML = "X";
+			// change the style of the box to make it unclickable
 			eachBox.style.pointerEvents = "none";
+			// sort array of playerX clicks from lowest to highest
 			playerX.sort();
-		}
-		else if (playerX.length == 2 && playerO.length == 1) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerO.push(num);
-			eachBox.innerHTML = "O";
-			eachBox.style.pointerEvents = "none";
-			playerO.sort();
-		}
-		else if (playerX.length == 2 && playerO.length == 2) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerX.push(num);
-			eachBox.innerHTML = "X";
-			eachBox.style.pointerEvents = "none";
-			playerX.sort();
-			for(var i = 0; i < winCombos.length; i++) {
-			    if ( playerX.indexOf(winCombos[i][0]) >= 0 ) {
-			        if ( playerX.indexOf(winCombos[i][1]) >= 0 ) {
-			            if ( playerX.indexOf(winCombos[i][2]) >= 0 ) {
-			            alert("Congrats, X wins!");
-			        return true;
-			            }
-			       }
-			    }
-			}
-		}
-		else if (playerX.length == 3 && playerO.length == 2) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerO.push(num);
-			eachBox.innerHTML = "O";
-			eachBox.style.pointerEvents = "none";
-			playerO.sort();
-			for(var i = 0; i < winCombos.length; i++) {
-			    if ( playerO.indexOf(winCombos[i][0]) >= 0 ) {
-			        if ( playerO.indexOf(winCombos[i][1]) >= 0 ) {
-			            if ( playerO.indexOf(winCombos[i][2]) >= 0 ) {
-			            alert("Congrats, O wins!");
-			        return true;
-			            }
-			       }
-			    }
-			}
-		}
-		else if (playerX.length == 3 && playerO.length == 3) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerX.push(num);
-			eachBox.innerHTML = "X";
-			eachBox.style.pointerEvents = "none";
-			playerX.sort();
-			for(var i = 0; i < winCombos.length; i++) {
-			    if ( playerX.indexOf(winCombos[i][0]) >= 0 ) {
-			        if ( playerX.indexOf(winCombos[i][1]) >= 0 ) {
-			            if ( playerX.indexOf(winCombos[i][2]) >= 0 ) {
-			            alert("Congrats, X wins!");
-			        return true;
-			            }
-			       }
-			    }
-			}
-		}
-		else if (playerX.length == 4 && playerO.length == 3) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerO.push(num);
-			eachBox.innerHTML = "O";
-			eachBox.style.pointerEvents = "none";
-			playerO.sort();
-			for(var i = 0; i < winCombos.length; i++) {
-			    if ( playerO.indexOf(winCombos[i][0]) >= 0 ) {
-			        if ( playerO.indexOf(winCombos[i][1]) >= 0 ) {
-			            if ( playerO.indexOf(winCombos[i][2]) >= 0 ) {
-			            alert("Congrats, O wins!");
-			        return true;
-			            }
-			       }
-			    }
-			}
-		}
-		else if (playerX.length == 4 && playerO.length == 4) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			playerX.push(num);
-			eachBox.innerHTML = "X";
-			eachBox.style.pointerEvents = "none";
-			playerX.sort();
-			for(var i = 0; i < winCombos.length; i++) {
-			    if ( playerX.indexOf(winCombos[i][0]) >= 0 ) {
-			        if ( playerX.indexOf(winCombos[i][1]) >= 0 ) {
-			            if ( playerX.indexOf(winCombos[i][2]) >= 0 ) {
-			            alert("Congrats, X wins!");
-			        return true;
-			            }
-			       }
-			    }
-			}
+			checkWinX();
+			// if X doesn't win on this turn, display the "Draw" alert
 			alert("It's a Draw.");
-		}
-		else {
-			console.log("Game Over");
 		}
 	};
 
