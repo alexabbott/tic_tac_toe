@@ -1,122 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tic Tac Toe</title>
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-	<script src="main.js"></script>
+<title>Tic Tac Toe</title>
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script>
+  var app = angular.module('toeApp', []);
+
+  app.controller('GameController', function($scope) {
+
+    // create empty arrays for playerX and playerO
+    $scope.playerX = [] ;
+    $scope.playerO = [] ;
+
+    // keep track of how many moves have been made
+    $scope.movecounter = 0 ;
+
+    $scope.xwincounter = 0 ;
+    $scope.owincounter = 0 ;
+
+    // create array of all possible winning combo arrays
+    $scope.winCombos = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+
+    // use cellList object to assist with changing class
+    $scope.cellList = [
+     {status: 1}, 
+     {status: 2}, 
+     {status: 3}, 
+     {status: 4}, 
+     {status: 5}, 
+     {status: 6}, 
+     {status: 7}, 
+     {status: 8}, 
+     {status: 9}
+     ]  ;
+
+    $scope.checkWinX = function () {
+      for(var i = 0; i < $scope.winCombos.length; i++) {
+        if ( $scope.playerX.indexOf($scope.winCombos[i][0]) >= 0 ) {
+          if ( $scope.playerX.indexOf($scope.winCombos[i][1]) >= 0 ) {
+            if ( $scope.playerX.indexOf($scope.winCombos[i][2]) >= 0 ) {
+              $scope.xwincounter = $scope.xwincounter + 1;
+              alert("Congrats, X wins! X has " + $scope.xwincounter + " wins");
+              return true;
+            }
+          }
+        }
+      }
+    };
+
+    // check to see if the array of playerO's values includes one of the winning combo arrays
+    $scope.checkWinO = function () {
+      for(var i = 0; i < $scope.winCombos.length; i++) {
+        if ( $scope.playerO.indexOf($scope.winCombos[i][0]) >= 0 ) {
+          if ( $scope.playerO.indexOf($scope.winCombos[i][1]) >= 0 ) {
+            if ( $scope.playerO.indexOf($scope.winCombos[i][2]) >= 0 ) {
+              $scope.owincounter = $scope.owincounter + 1;
+              alert("Congrats, O wins! O has " + $scope.owincounter + " wins");
+              return true;
+            }
+          }
+        }
+      }
+    };
+
+    $scope.playerPicks = function(thisCell) {
+      $scope.movecounter = $scope.movecounter + 1 ;
+      if (($scope.movecounter % 2) == 1) {
+        $scope.playerX.push(thisCell.status);
+        $scope.playerX.sort();
+        thisCell.status = "X" ;
+        $scope.checkWinX();
+        if ($scope.movecounter == 9) {
+          $scope.checkWinX();
+          alert("It's a draw");
+        }  
+      } 
+      else {
+        $scope.playerO.push(thisCell.status);
+        $scope.playerO.sort();
+        thisCell.status = "O" ;
+        $scope.checkWinO();
+      } 
+
+  } ;
+
+
+
+});
+</script>
+
 </head>
 <body ng-app="toeApp">
-	<header ng-controller="headerCtrl">TIC TAC TOE</header>
+	<header>TIC TAC TOE</header>
 	<!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
-	<div id="wrapper" ng-controller="gameCtrl">
-		<div class="box" id="box1" onclick="boxClicked(1)">1</div>
-		<div class="box" id="box2" onclick="boxClicked(2)">2</div>
-		<div class="box" id="box3" onclick="boxClicked(3)">3</div>
-		<div class="box" id="box4" onclick="boxClicked(4)">4</div>
-		<div class="box" id="box5" onclick="boxClicked(5)">5</div>
-		<div class="box" id="box6" onclick="boxClicked(6)">6</div>
-		<div class="box" id="box7" onclick="boxClicked(7)">7</div>
-		<div class="box" id="box8" onclick="boxClicked(8)">8</div>
-		<div class="box" id="box9" onclick="boxClicked(9)">9</div>
+	<div id="wrapper" ng-controller="GameController">
+		<div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)"></div>
 	</div>
 
 	<!-- Reset game with this button -->
 	<a href="index.html"><div id="reset">RESET GAME</div></a>
 
-	<script>
-	// instantiate empty arrays for playerX and playerO
-	var playerX = [];
-	var playerO = [];
 
-	// Define winning combos
-	var winCombos = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
-
-	// function that resets each player's array and resets all the boxes to remove "X"'s and "O"'s'
-	// var reset = function () {
-	// 	playerX = [];
-	// 	playerO = [];
-	// 	for (i = 1; i < 10; i++) {
-	// 		document.getElementById('box' + i).innerHTML = i;
-	// 	};
-	// };
-
-	// check to see if the array of playerX's values includes one of the winning combo arrays
-	var checkWinX = function () {
-		for(var i = 0; i < winCombos.length; i++) {
-		    if ( playerX.indexOf(winCombos[i][0]) >= 0 ) {
-		        if ( playerX.indexOf(winCombos[i][1]) >= 0 ) {
-		            if ( playerX.indexOf(winCombos[i][2]) >= 0 ) {
-		            alert("Congrats, X wins!");
-		        return true;
-		            }
-		       }
-		    }
-		}
-	};
-
-	// check to see if the array of playerO's values includes one of the winning combo arrays
-	var checkWinO = function () {
-		for(var i = 0; i < winCombos.length; i++) {
-		    if ( playerO.indexOf(winCombos[i][0]) >= 0 ) {
-		        if ( playerO.indexOf(winCombos[i][1]) >= 0 ) {
-		            if ( playerO.indexOf(winCombos[i][2]) >= 0 ) {
-		            alert("Congrats, O wins!");
-		        return true;
-		            }
-		       }
-		    }
-		}
-	};
-
-	// run this function on any box that is clicked
-	var boxClicked = function(i) {
-		// if (number of clicks for playerX + number of clicks for playerO) is even, then it's playerX's turn
-		if ((playerX.length + playerO.length) % 2 == 0) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
-			playerX.push(num);
-			eachBox.innerHTML = "X";
-			// change the style of the box to make it unclickable
-			eachBox.style.pointerEvents = "none";
-			// sort array of playerX clicks from lowest to highest
-			playerX.sort();
-			checkWinX();
-		}
-		// if (number of clicks for playerX + number of clicks for playerO) is odd, then it's playerO's turn
-		else if ((playerX.length + playerO.length) % 2 == 1) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
-			playerO.push(num);
-			eachBox.innerHTML = "O";
-			// change the style of the box to make it unclickable
-			eachBox.style.pointerEvents = "none";
-			// sort array of playerO clicks from lowest to highest
-			playerO.sort();
-			checkWinO();
-		}
-		// if (number of clicks for playerX + number of clicks for playerO) is 8, then it's playerX's last turn
-		else if ((playerX.length + playerO.length) == 8) {
-			var eachBox = document.getElementById('box' + i);
-			var num = Number(eachBox.innerHTML);
-			// Turn the innerHTML that's collected from playerX's clicked on box into an integer
-			playerX.push(num);
-			eachBox.innerHTML = "X";
-			// change the style of the box to make it unclickable
-			eachBox.style.pointerEvents = "none";
-			// sort array of playerX clicks from lowest to highest
-			playerX.sort();
-			checkWinX();
-			// if X doesn't win on this turn, display the "Draw" alert
-			alert("It's a Draw.");
-		}
-	};
-
-	</script>
 
 </body>
 </html>

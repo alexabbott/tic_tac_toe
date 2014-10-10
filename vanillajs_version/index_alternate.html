@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body ng-app="toeApp">
+	<header>TIC TAC TOE</header>
+	<!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
+	<div id="wrapper" ng-controller="gameCtrl">
+		<div class="box" id="box1" onclick="boxClicked(1)">1</div>
+		<div class="box" id="box2" onclick="boxClicked(2)">2</div>
+		<div class="box" id="box3" onclick="boxClicked(3)">3</div>
+		<div class="box" id="box4" onclick="boxClicked(4)">4</div>
+		<div class="box" id="box5" onclick="boxClicked(5)">5</div>
+		<div class="box" id="box6" onclick="boxClicked(6)">6</div>
+		<div class="box" id="box7" onclick="boxClicked(7)">7</div>
+		<div class="box" id="box8" onclick="boxClicked(8)">8</div>
+		<div class="box" id="box9" onclick="boxClicked(9)">9</div>
+	</div>
+
+	<!-- Reset game with this button -->
+	<a href="index.html"><div id="reset">RESET GAME</div></a>
+
+</body>
+</html>

@@ -6,25 +6,26 @@ body {
 	margin: 0 auto;
 	font-family: VT323, sans-serif;
 	font-size: 14px;
-	overflow: hidden;
+/*	overflow: hidden;
+*/	background: url('binary.gif');
 }
 div {
 	border: 1px solid #000;
 }
 header {
-	background-color: #000;
-	color: #fff;
+	color: #0f0;
 	text-align:center;
-	padding: 20px 0 20px 0;
+	padding: 15px 0 5px 0;
 	font-size: 5em;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	width: 100%;
+	text-shadow: 0px 0px 35px #000;
 }
 #wrapper {
 	width: 456px;
 	height: 600px;
-	margin: 130px auto 0px auto;
+	margin: 105px auto 0px auto;
 	border: 0px;
 }
 .box {
@@ -35,7 +36,34 @@ header {
 	text-align: center;
 	font-size: 8em;
 	padding-top: 20px;
+	background-color: rgba(255,255,255,0.9);
 }
+.xbox {
+	width: 150px;
+	height: 130px;
+	outline: 1px solid #000;
+	float: left;
+	text-align: center;
+	font-size: 8em;
+	padding-top: 20px;
+	background: url('http://upload.wikimedia.org/wikipedia/commons/e/e2/Blue_square_X.PNG');
+	background-size: cover;
+	pointer-events: none;
+}
+.obox {
+	width: 150px;
+	height: 130px;
+	outline: 1px solid #000;
+	float: left;
+	text-align: center;
+	font-size: 8em;
+	padding-top: 20px;
+	background: url('http://upload.wikimedia.org/wikipedia/commons/0/08/Blue_square_O.PNG');
+	background-size: cover;
+	pointer-events: none;
+
+}
+
 #reset {
 	text-align: center;
 	padding: 20px;
@@ -43,7 +71,8 @@ header {
 	border-radius: 10px;
 	margin: -120px auto 30px auto;
 	font-size: 3em;
-	color: #000;
+	color: #00bd09;
+	background: #fff;
 }
 #reset:hover {
 	color: #fff;
