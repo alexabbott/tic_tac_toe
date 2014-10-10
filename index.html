@@ -6,104 +6,19 @@
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-<script>
-  var app = angular.module('toeApp', []);
-
-  app.controller('GameController', function($scope) {
-
-    // create empty arrays for playerX and playerO
-    $scope.playerX = [] ;
-    $scope.playerO = [] ;
-
-    // keep track of how many moves have been made
-    $scope.movecounter = 0 ;
-
-    $scope.xwincounter = 0 ;
-    $scope.owincounter = 0 ;
-
-    // create array of all possible winning combo arrays
-    $scope.winCombos = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
-
-    // use cellList object to assist with changing class
-    $scope.cellList = [
-     {status: 1}, 
-     {status: 2}, 
-     {status: 3}, 
-     {status: 4}, 
-     {status: 5}, 
-     {status: 6}, 
-     {status: 7}, 
-     {status: 8}, 
-     {status: 9}
-     ]  ;
-
-    $scope.checkWinX = function () {
-      for(var i = 0; i < $scope.winCombos.length; i++) {
-        if ( $scope.playerX.indexOf($scope.winCombos[i][0]) >= 0 ) {
-          if ( $scope.playerX.indexOf($scope.winCombos[i][1]) >= 0 ) {
-            if ( $scope.playerX.indexOf($scope.winCombos[i][2]) >= 0 ) {
-              $scope.xwincounter = $scope.xwincounter + 1;
-              alert("Congrats, X wins! X has " + $scope.xwincounter + " wins");
-              return true;
-            }
-          }
-        }
-      }
-    };
-
-    // check to see if the array of playerO's values includes one of the winning combo arrays
-    $scope.checkWinO = function () {
-      for(var i = 0; i < $scope.winCombos.length; i++) {
-        if ( $scope.playerO.indexOf($scope.winCombos[i][0]) >= 0 ) {
-          if ( $scope.playerO.indexOf($scope.winCombos[i][1]) >= 0 ) {
-            if ( $scope.playerO.indexOf($scope.winCombos[i][2]) >= 0 ) {
-              $scope.owincounter = $scope.owincounter + 1;
-              alert("Congrats, O wins! O has " + $scope.owincounter + " wins");
-              return true;
-            }
-          }
-        }
-      }
-    };
-
-    $scope.playerPicks = function(thisCell) {
-      $scope.movecounter = $scope.movecounter + 1 ;
-      if (($scope.movecounter % 2) == 1) {
-        $scope.playerX.push(thisCell.status);
-        $scope.playerX.sort();
-        thisCell.status = "X" ;
-        $scope.checkWinX();
-        if ($scope.movecounter == 9) {
-          $scope.checkWinX();
-          alert("It's a draw");
-        }  
-      } 
-      else {
-        $scope.playerO.push(thisCell.status);
-        $scope.playerO.sort();
-        thisCell.status = "O" ;
-        $scope.checkWinO();
-      } 
-
-  } ;
-
-
-
-});
-</script>
-
+<script src="main.js"></script>
 </head>
 <body ng-app="toeApp">
 	<header>TIC TAC TOE</header>
 	<!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
-	<div id="wrapper" ng-controller="GameController">
-		<div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)"></div>
+	<div ng-controller="GameController">
+    <div id="wrapper">
+		  <div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)">  
+      </div>
+    </div>
+    <!-- Reset game with this button -->
+    <div id="reset" ng-click="reset()">RESET GAME</div>
 	</div>
-
-	<!-- Reset game with this button -->
-	<a href="index.html"><div id="reset">RESET GAME</div></a>
-
-
 
 </body>
 </html>
