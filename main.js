@@ -29,8 +29,10 @@ var app = angular.module('toeApp', []);
       {status: 9}
       ]  ;
 
-    // create a copy of the original cellList objects
-    $scope.legacyCellList = angular.copy($scope.cellList) ;
+    // increment this value when a win happens, reset button will bring this button back to 0
+    $scope.gamecounter = 0;
+
+    $scope.winner;
 
     // check to see if the array of playerX's array includes one of the winning combo arrays
     $scope.checkWinX = function () {
@@ -39,7 +41,9 @@ var app = angular.module('toeApp', []);
           if ( $scope.playerX.indexOf($scope.winCombos[i][1]) >= 0 ) {
             if ( $scope.playerX.indexOf($scope.winCombos[i][2]) >= 0 ) {
               $scope.xwincounter = $scope.xwincounter + 1;
-              alert("X wins! X has " + $scope.xwincounter + " wins");
+              $scope.winner = "X";
+              $scope.gamecounter = $scope.gamecounter + 1;
+              // alert("X wins! X has " + $scope.xwincounter + " wins and " + "O has " + $scope.owincounter + " wins");
               return true;
             }
           }
@@ -54,7 +58,9 @@ var app = angular.module('toeApp', []);
           if ( $scope.playerO.indexOf($scope.winCombos[i][1]) >= 0 ) {
             if ( $scope.playerO.indexOf($scope.winCombos[i][2]) >= 0 ) {
               $scope.owincounter = $scope.owincounter + 1;
-              alert("O wins! O has " + $scope.owincounter + " wins");
+              $scope.winner = "O";
+              $scope.gamecounter = $scope.gamecounter + 1;
+              // alert("O wins! O has " + $scope.owincounter + " wins and " + "X has " + $scope.xwincounter + " wins");
               return true;
             }
           }
@@ -72,7 +78,9 @@ var app = angular.module('toeApp', []);
         $scope.checkWinX();
         if ($scope.movecounter == 9) {
           $scope.checkWinX();
-          alert("It's a draw");
+          $scope.gamecounter = $scope.gamecounter + 1;
+          $scope.winner = "NO ONE";
+          // alert("It's a draw");
         }  
       } 
       else {
@@ -89,6 +97,8 @@ var app = angular.module('toeApp', []);
       $scope.playerX = [];
       $scope.playerO = [];
       $scope.movecounter = 0;
+      $scope.gamecounter = 0;
+      $scope.winner;
       $scope.cellList = [
       {status: 1}, 
       {status: 2}, 

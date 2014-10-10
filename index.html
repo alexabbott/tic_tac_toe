@@ -9,16 +9,24 @@
 <script src="main.js"></script>
 </head>
 <body ng-app="toeApp">
-	<header>TIC TAC TOE</header>
-	<!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
-	<div ng-controller="GameController">
+  <header>TIC TAC TOE</header>
+  <div ng-controller="GameController">
+    <!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
     <div id="wrapper">
-		  <div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)">  
+      <!-- this box appears whenever a winner/draw is declared -->
+      <div class="winbox" ng-show="gamecounter == 1" ng-hide="gamecounter == 0">
+        {{winner}} WINS!
+        <div class="wintext">
+          X has {{xwincounter}} wins<br>
+          O has {{owincounter}} wins
+        </div>
+      </div>
+      <div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)">  
       </div>
     </div>
     <!-- Reset game with this button -->
     <div id="reset" ng-click="reset()">RESET GAME</div>
-	</div>
+  </div>
 
 </body>
 </html>

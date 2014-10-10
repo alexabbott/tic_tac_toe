@@ -63,6 +63,24 @@ header {
 	pointer-events: none;
 
 }
+.winbox {
+/*	display: none;
+*/	width: 456px;
+	height: 456px;
+	background-color: #0f0;
+	color: #fff;
+	-webkit-text-stroke: 1px #009b00;
+	text-align: center;
+	font-size: 10em;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 1;
+}
+
+.wintext {
+	font-size: 36px;
+	color: #000;
+}
 
 #reset {
 	text-align: center;
@@ -72,10 +90,10 @@ header {
 	margin: -120px auto 30px auto;
 	font-size: 3em;
 	color: #0f0;
-	background: #fff;
+	background: rgba(255,255,255,0.9);
 	-webkit-text-stroke: 1px #009b00;
 }
 #reset:hover {
 	color: #fff;
-	background-color: #000;
+	background-color: rgba(0,0,0,0.7);
 }
