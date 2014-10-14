@@ -7,19 +7,20 @@ body {
 	font-family: VT323, sans-serif;
 	font-size: 14px;
 /*	overflow: hidden;
-*/	background: url('binary.gif');
+*/	background: url('trippybg1.gif');
 }
 div {
 	border: 1px solid #000;
 }
 header {
-	color: #0f0;
+	color: rgba(0,240,0,0.8);
 	text-align:center;
 	padding: 5px 0 5px 0;
 	font-size: 8em;
 	position: absolute;
 	top: 0;
 	width: 100%;
+	-webkit-text-stroke: 2px #0f0;
 	text-shadow: 0px 0px 35px #000;
 }
 #wrapper {
@@ -67,19 +68,21 @@ header {
 /*	display: none;
 */	width: 456px;
 	height: 456px;
-	background-color: #0f0;
-	color: #fff;
-	-webkit-text-stroke: 1px #009b00;
+	background: url('binary.gif');
+/*	background-size: cover;
+*/	color: #fff;
+	text-shadow: 0px 0px 55px #000;
 	text-align: center;
 	font-size: 10em;
 	margin: 0 auto;
 	position: absolute;
 	z-index: 1;
+	box-shadow: 0px 0px 55px #000;
 }
 
 .wintext {
-	font-size: 36px;
-	color: #000;
+	font-size: 56px;
+	color: #fff;
 }
 
 #reset {
@@ -91,7 +94,9 @@ header {
 	font-size: 3em;
 	color: #0f0;
 	background: rgba(255,255,255,0.9);
+	box-shadow: 0px 0px 35px #000;
 	-webkit-text-stroke: 1px #009b00;
+	border: 2px solid #0f0;
 }
 #reset:hover {
 	color: #fff;
