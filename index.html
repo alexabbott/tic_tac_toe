@@ -5,16 +5,17 @@
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="animate.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 <script src="main.js"></script>
 </head>
 <body ng-app="toeApp">
-  <header>T1C TAC T0E</header>
+  <header class="animated fadeInDownBig">T1C TAC T0E</header>
   <div ng-controller="GameController">
     <!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
-    <div id="wrapper">
+    <div id="wrapper" class="animated fadeIn">
       <!-- this box appears whenever a winner/draw is declared -->
-      <div class="winbox" ng-show="gamecounter == 1" ng-hide="gamecounter == 0">
+      <div class="winbox animated fadeIn" ng-show="gamecounter == 1" ng-hide="gamecounter == 0">
         {{winner}} WINS!
         <div class="wintext">
           X has {{xwincounter}} wins<br>
@@ -25,7 +26,7 @@
       </div>
     </div>
     <!-- Reset game with this button -->
-    <div id="reset" ng-click="reset()">RESET GAME</div>
+    <div id="reset" ng-click="reset()" class="animated fadeInUpBig">RESET GAME</div>
   </div>
 
 </body>
