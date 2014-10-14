@@ -7,7 +7,7 @@ body {
 	font-family: VT323, sans-serif;
 	font-size: 14px;
 /*	overflow: hidden;
-*/	background: url('trippybg4.gif');
+*/	background: url('trippybg5.gif');
 }
 div {
 	border: 1px solid #000;
@@ -50,6 +50,10 @@ header {
 	background: url('x.png');
 	background-size: cover;
 	pointer-events: none;
+	-webkit-transition: background 300ms ease-in 200ms;
+    -moz-transition: background 300ms ease-in 200ms;
+    -o-transition: background 300ms ease-in 200ms;
+    transition: background 300ms ease-in 200ms;
 }
 .obox {
 	width: 150px;
@@ -62,13 +66,17 @@ header {
 	background: url('o.png');
 	background-size: cover;
 	pointer-events: none;
+	-webkit-transition: background 300ms ease-in 200ms;
+    -moz-transition: background 300ms ease-in 200ms;
+    -o-transition: background 300ms ease-in 200ms;
+    transition: background 300ms ease-in 200ms;
 
 }
 .winbox {
 /*	display: none;
 */	width: 456px;
 	height: 456px;
-	background: url('trippybg5.gif');
+	background: url('binary1.gif');
 /*	background-size: cover;
 */	color: #fff;
 	text-shadow: 0px 0px 55px #000;
@@ -92,13 +100,13 @@ header {
 	border-radius: 10px;
 	margin: -120px auto 30px auto;
 	font-size: 3em;
-	color: #0f0;
-	background: rgba(255,255,255,0.9);
+	color: #fff;
+	background: rgba(0,0,0,0.7);
 	box-shadow: 0px 0px 35px #000;
 	-webkit-text-stroke: 1px #009b00;
 	border: 2px solid #0f0;
 }
 #reset:hover {
-	color: #fff;
-	background-color: rgba(0,0,0,0.7);
+	color: #0f0;
+	background-color: rgba(255,255,255,0.9);
 }

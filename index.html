@@ -22,6 +22,7 @@
           O has {{owincounter}} wins
         </div>
       </div>
+      <!-- this is the box that is repeated 9 times to create the 3x3 grid -->
       <div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)">  
       </div>
     </div>
