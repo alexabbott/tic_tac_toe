@@ -9,26 +9,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 <script src="main.js"></script>
 </head>
-<body ng-app="toeApp">
+<body x-ng-app="ToeApp">
   <header class="animated fadeInDownBig">T1C TAC T0E</header>
-  <div ng-controller="GameController">
+  <div x-ng-controller="GameController">
     <!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
     <div id="wrapper" class="animated fadeIn">
       <!-- this box appears whenever a winner/draw is declared -->
-      <div class="winbox animated fadeIn" ng-show="gamecounter == 1" ng-hide="gamecounter == 0">
+      <div class="winbox animated fadeIn" x-ng-show="gameCounter == 1" x-ng-hide="gameCounter == 0">
         {{winner}} WINS!
         <div class="wintext">
-          X has {{xwincounter}} wins<br>
-          O has {{owincounter}} wins
+          X has {{xWinCounter}} wins<br>
+          O has {{oWinCounter}} wins
         </div>
       </div>
       <!-- this is the box that is repeated 9 times to create the 3x3 grid -->
-      <div class="box" id="box{{eachValue}}" ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" ng-repeat="currentCell in cellList" ng-click="playerPicks(currentCell)">  
+      <div class="box" x-ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" x-ng-repeat="currentCell in cellList" x-ng-click="playerPicks(currentCell)">  
       </div>
     </div>
     <!-- Reset game with this button -->
-    <div id="reset" ng-click="reset()" class="animated fadeInUpBig">RESET GAME</div>
+    <div id="reset" x-ng-click="reset()" class="animated fadeInUpBig">RESET GAME</div>
   </div>
-
 </body>
 </html>

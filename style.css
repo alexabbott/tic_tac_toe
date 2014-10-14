@@ -6,8 +6,7 @@ body {
 	margin: 0 auto;
 	font-family: VT323, sans-serif;
 	font-size: 14px;
-/*	overflow: hidden;
-*/	background: url('trippybg5.gif');
+	background: url('trippybg5.gif');
 }
 div {
 	border: 1px solid #000;
@@ -54,9 +53,9 @@ header {
 	background-size: cover;
 	pointer-events: none;
 	-webkit-transition: background 300ms ease-in 200ms;
-  -moz-transition: background 300ms ease-in 200ms;
-  -o-transition: background 300ms ease-in 200ms;
-  transition: background 300ms ease-in 200ms;
+  	-moz-transition: background 300ms ease-in 200ms;
+  	-o-transition: background 300ms ease-in 200ms;
+  	transition: background 300ms ease-in 200ms;
 }
 .obox {
 	width: 150px;
@@ -70,25 +69,23 @@ header {
 	background-size: cover;
 	pointer-events: none;
 	-webkit-transition: background 300ms ease-in 200ms;
-  -moz-transition: background 300ms ease-in 200ms;
-  -o-transition: background 300ms ease-in 200ms;
-  transition: background 300ms ease-in 200ms;
+  	-moz-transition: background 300ms ease-in 200ms;
+  	-o-transition: background 300ms ease-in 200ms;
+  	transition: background 300ms ease-in 200ms;
 
 }
 .winbox {
-/*	display: none;
-*/	width: 456px;
-height: 456px;
-background: url('binary1.gif');
-/*	background-size: cover;
-*/	color: #fff;
-text-shadow: 0px 0px 55px #000;
-text-align: center;
-font-size: 10em;
-margin: 0 auto;
-position: absolute;
-z-index: 1;
-box-shadow: 0px 0px 55px #000;
+	width: 456px;
+	height: 456px;
+	background: url('binary1.gif');
+	color: #fff;
+	text-shadow: 0px 0px 55px #000;
+	text-align: center;
+	font-size: 10em;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 1;
+	box-shadow: 0px 0px 55px #000;
 }
 
 .wintext {
