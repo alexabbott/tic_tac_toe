@@ -3,6 +3,7 @@
 <head>
 <title>Tic Tac Toe</title>
 <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+<link rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="animate.css">
@@ -23,11 +24,17 @@
         </div>
       </div>
       <!-- this is the box that is repeated 9 times to create the 3x3 grid -->
-      <div class="box" x-ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" x-ng-repeat="currentCell in cellList" x-ng-click="playerPicks(currentCell)">  
+      <div class="box" x-ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" x-ng-repeat="currentCell in cellList" x-ng-click="playerPicks(currentCell)" onclick="document.getElementById('boxSound').play()">  
       </div>
     </div>
     <!-- Reset game with this button -->
-    <div id="reset" x-ng-click="reset()" class="animated fadeInUpBig">RESET GAME</div>
+    <div id="reset" x-ng-click="reset()" class="animated fadeInUpBig" onclick="document.getElementById('resetSound').play()">RESET GAME</div>
   </div>
+    <audio id="boxSound">
+      <source src="fx.wav">
+  </audio>
+  <audio id="resetSound">
+      <source src="reset.wav">
+  </audio>
 </body>
 </html>
