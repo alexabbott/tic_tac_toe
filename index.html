@@ -1,40 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Tic Tac Toe</title>
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=VT323">
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=VT323">
 <link rel="shortcut icon" href="favicon.ico">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="animate.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script> 
+<!-- Firebase -->
+<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+<!-- Custom JS -->
 <script src="main.js"></script>
 </head>
 <body x-ng-app="ToeApp">
   <header class="animated fadeInDownBig">T1C TAC T0E</header>
-  <div x-ng-controller="GameController">
+  <div x-ng-controller="GameController" ng-model="gameContainer">
     <!-- this wrapper div is just wide enough to have 3 boxes across & 3 boxes tall -->
     <div id="wrapper" class="animated fadeIn">
       <!-- this box appears whenever a winner/draw is declared -->
-      <div class="winbox animated fadeIn" x-ng-show="gameCounter == 1" x-ng-hide="gameCounter == 0">
-        {{winner}} WINS!
+      <div class="winbox animated fadeIn" x-ng-show="gameContainer.gameCounterValue == 1" x-ng-hide="gameContainer.gameCounterValue == 0">
+        {{gameContainer.winnerValue}} WINS!
         <div class="wintext">
-          X has {{xWinCounter}} wins<br>
-          O has {{oWinCounter}} wins
+          X has {{gameContainer.xWinCounterValue}} wins<br>
+          O has {{gameContainer.oWinCounterValue}} wins
         </div>
       </div>
       <!-- this is the box that is repeated 9 times to create the 3x3 grid -->
-      <div class="box" x-ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" x-ng-repeat="currentCell in cellList" x-ng-click="playerPicks(currentCell)" onclick="document.getElementById('boxSound').play()">  
+      <div class="box" x-ng-class="{xbox: currentCell.status=='X', obox: currentCell.status =='O'}" x-ng-repeat="currentCell in gameContainer.cellListArray" x-ng-click="playerPicks(currentCell)">  
       </div>
     </div>
     <!-- Reset game with this button -->
-    <div id="reset" x-ng-click="reset()" class="animated fadeInUpBig" onclick="document.getElementById('resetSound').play()">RESET GAME</div>
+    <div id="reset" x-ng-click="reset()" class="animated fadeInUpBig">RESET GAME</div>
   </div>
-    <audio id="boxSound">
-      <source src="fx.wav">
-  </audio>
-  <audio id="resetSound">
-      <source src="reset.wav">
-  </audio>
+
 </body>
 </html>
