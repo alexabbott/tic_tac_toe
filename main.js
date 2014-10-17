@@ -4,7 +4,6 @@ var app = angular.module('ToeApp', ["firebase"]);
 
   $scope.remoteGameContainer = 
   $firebase(new Firebase("https://aatictactoe.firebaseIO.com/databaseGameContainer")) ;
-  // Don't forget to change "tttbyrichard" to your Firebase app name.
 
 
     // use cellList object to assist with changing class and assigning values to player arrays
@@ -101,8 +100,8 @@ var app = angular.module('ToeApp', ["firebase"]);
               $scope.gameContainer.winnerValue = "X";
               // Increase gamecounter by one to show hidden winner declaration div
               $scope.gameContainer.gameCounterValue = $scope.gameContainer.gameCounterValue + 1;
+              // Play "X wins" audio file when playerX wins
               $scope.xWinsSound.play();
-              // alert("X wins! X has " + $scope.xwincounter + " wins and " + "O has " + $scope.owincounter + " wins");
               return true;
             }
           }
@@ -122,8 +121,8 @@ var app = angular.module('ToeApp', ["firebase"]);
               $scope.gameContainer.winnerValue = "O";
               // Increase gamecounter by one to show hidden winner declaration div
               $scope.gameContainer.gameCounterValue = $scope.gameContainer.gameCounterValue + 1;
+              // Play "O wins" audio file when playerO wins
               $scope.oWinsSound.play();
-              // alert("O wins! O has " + $scope.owincounter + " wins and " + "X has " + $scope.xwincounter + " wins");
               return true;
             }
           }
@@ -139,15 +138,17 @@ var app = angular.module('ToeApp', ["firebase"]);
         $scope.gameContainer.playerXValues.sort();
         // set the new status for the cell, which will trigger a change to the xbox class
         thisCell.status = "X" ;
+        // Play "X" audio file when playerX clicks on a box
         $scope.xSound.play();
+        // Check to see if playerX's array has a winning combo
         $scope.checkWinX();
         // show the 'draw' status if neither player has a winning combo after the 9 possible clicks
         if (($scope.gameContainer.moveCount == 9) && ($scope.gameContainer.winnerValue != "X")) {
           // Increase gamecounter by one to show hidden 'draw' declaration div
           $scope.gameContainer.gameCounterValue = $scope.gameContainer.gameCounterValue + 1;
           $scope.gameContainer.winnerValue = "NO ONE";
+          // Play "no one wins" audio file when neither player wins
           $scope.tieSound.play();
-          // alert("It's a draw");
         }  
       } 
       else {
@@ -155,13 +156,15 @@ var app = angular.module('ToeApp', ["firebase"]);
         $scope.gameContainer.playerOValues.sort();
         // set the new status for the cell, which will trigger a change to the obox class
         thisCell.status = "O" ;
+        // Play "O" audio file when playerX clicks on a box
         $scope.oSound.play();
+        // Check to see if playerO's array has a winning combo
         $scope.checkWinO();
       } 
 
     } ;
 
-    // this function resets the player arrays and movecounter
+    // this function resets the player arrays, movecounter, gamecounter and cell array
     $scope.reset = function() {
       $scope.gameContainer.playerXValues = ["x"];
       $scope.gameContainer.playerOValues = ["o"];
@@ -179,6 +182,7 @@ var app = angular.module('ToeApp', ["firebase"]);
       {status: 8}, 
       {status: 9}
       ]  ;
+      // Play "reset" audio file when player clicks 'rese game' button
       $scope.resetSound.play();
     }
 
